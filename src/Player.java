@@ -18,32 +18,39 @@ public class Player {
         terminal.putCharacter(playerCharacter);
 
     }
-    //Metod som flyttar spelaren
-    public void movePlayer(Terminal terminal, Key.Kind key) {// ej klar
 
-        switch (key) {
+    //Metod som flyttar spelaren
+    public void movePlayer(Terminal terminal) throws InterruptedException {
+        Key key;
+        do {
+            Thread.sleep(5);
+            key = terminal.readInput();
+        }
+        while (key == null);
+
+
+        // Key.Kind keyPressed = key.getKind();// ej klar
+
+        switch (key.getKind()) {
             case ArrowDown:
-                y=y+1;
-                //terminal.moveCursor(x,y-1);
-                //terminal.putCharacter('\u263a');
+                y = ((y<20)? y+1 : 20);
+                System.out.println("Player x: " + x + " Player y: " + y);
                 break;
             case ArrowUp:
-                y=y-1;
-                //terminal.moveCursor(x, y+1);
-                //terminal.putCharacter('\u263a');
+                y = ((y>0) ? y - 1 : 0);
+                System.out.println("Player x: " + x + " Player y: " + y);
                 break;
             case ArrowLeft:
-                x=x-1;
-                //terminal.moveCursor(x-1, y);
-                //terminal.putCharacter('\u263a');
+                x = (x>0) ? x - 1 : 0;
+                System.out.println("Player x: " + x + " Player y: " + y);
                 break;
             case ArrowRight:
-                x=x+1;
-                //terminal.moveCursor(x+1, y);
-                //terminal.putCharacter('\u263a');
+                x = (x<20) ? x + 1 : 20;
+                System.out.println("Player x: " + x + " Player y: " + y);
                 break;
         }
     }
+
 
 
 

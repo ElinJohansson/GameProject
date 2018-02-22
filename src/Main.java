@@ -1,11 +1,8 @@
 import com.googlecode.lanterna.*;
 import com.googlecode.lanterna.input.Key;
 import com.googlecode.lanterna.terminal.Terminal;
-import com.googlecode.lanterna.terminal.TerminalSize;
 
-import java.io.IOException;
 import java.nio.charset.Charset;
-import java.util.Random;
 
 public class Main {
     public static void main(String[] arg) throws InterruptedException {
@@ -17,26 +14,27 @@ public class Main {
         terminal.setCursorVisible(false);
 
         Board board = new Board(terminal);
-        Monster monster = new Monster(terminal);
+
        Player player = new Player(terminal);
 
+       Monster[]monsters = new Monster[4];
+       for (int i=0; i<monsters.length; i++){
+           monsters[i]=new Monster(terminal);
+       }
+
         boolean gameIsRunning = true;
+
         while (gameIsRunning) {
 
-            Key key;
-            do {
-                Thread.sleep(5);
-                key = terminal.readInput();
+
+
+            player.movePlayer(terminal);
+            for (int i=0; i<monsters.length; i++) {
+                monsters[i].moveMonster(terminal, player);
             }
-            while (key == null);
+            gameIsRunning = checkPlayerAlive(monsters, player);
 
-            Key.Kind keyPressed = key.getKind();
-
-            monster.moveMonster(terminal,player);
-            player.movePlayer(terminal, keyPressed);
-            gameIsRunning = checkPlayerAlive(monster, player);
-
-            board.updateScreen(terminal, player, monster);
+            board.updateScreen(terminal, player, monsters);
 
 
         }
@@ -44,9 +42,11 @@ public class Main {
 
     }
 
-    public static boolean checkPlayerAlive(Monster monster, Player player){
-        if(monster.getX() == player.getX() && monster.getY() == player.getY()){
+    public static boolean checkPlayerAlive(Monster[] monsters, Player player){
+        for (int i=0; i<monsters.length; i++){
+        if(monsters[i].getMonsterX() == player.getX() && monsters[i].getMonsterY() == player.getY()){
             return false;
+        }
         }
         return true;
     }
