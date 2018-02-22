@@ -33,19 +33,19 @@ public class Player {
 
         switch (key.getKind()) {
             case ArrowDown:
-                y = ((y<20)? y+1 : 20);
+                y = ((y<19)? y+1 : 19);
                 System.out.println("Player x: " + x + " Player y: " + y);
                 break;
             case ArrowUp:
-                y = ((y>0) ? y - 1 : 0);
+                y = ((y>1) ? y - 1 : 1);
                 System.out.println("Player x: " + x + " Player y: " + y);
                 break;
             case ArrowLeft:
-                x = (x>0) ? x - 1 : 0;
+                x = (x>1) ? x - 1 : 1;
                 System.out.println("Player x: " + x + " Player y: " + y);
                 break;
             case ArrowRight:
-                x = (x<20) ? x + 1 : 20;
+                x = (x<19) ? x + 1 : 19;
                 System.out.println("Player x: " + x + " Player y: " + y);
                 break;
         }
