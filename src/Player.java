@@ -14,29 +14,33 @@ public class Player {
     public Player(Terminal terminal) {
         this.x = 5;
         this.y = 5;
-        terminal.moveCursor(x,y);
+        terminal.moveCursor(x, y);
         terminal.putCharacter(playerCharacter);
 
     }
     //Metod som flyttar spelaren
-    public static void movePlayer(Terminal terminal, Key.Kind key) {// ej klar
+    public void movePlayer(Terminal terminal, Key.Kind key) {// ej klar
 
         switch (key) {
             case ArrowDown:
-                terminal.moveCursor(0, -1);
-                terminal.putCharacter('\u263a');
+                y=y+1;
+                //terminal.moveCursor(x,y-1);
+                //terminal.putCharacter('\u263a');
                 break;
             case ArrowUp:
-                terminal.moveCursor(0, 1);
-                terminal.putCharacter('\u263a');
+                y=y-1;
+                //terminal.moveCursor(x, y+1);
+                //terminal.putCharacter('\u263a');
                 break;
             case ArrowLeft:
-                terminal.moveCursor(-1, 0);
-                terminal.putCharacter('\u263a');
+                x=x-1;
+                //terminal.moveCursor(x-1, y);
+                //terminal.putCharacter('\u263a');
                 break;
             case ArrowRight:
-                terminal.moveCursor(0, -1);
-                terminal.putCharacter('\u263a');
+                x=x+1;
+                //terminal.moveCursor(x+1, y);
+                //terminal.putCharacter('\u263a');
                 break;
         }
     }

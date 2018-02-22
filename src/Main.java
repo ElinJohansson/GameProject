@@ -14,9 +14,10 @@ public class Main {
                 System.out, Charset.forName("UTF8"));
 
         terminal.enterPrivateMode();
+        terminal.setCursorVisible(false);
 
         Board board = new Board(terminal);
-//        Player player = new Player();
+       Player player = new Player(terminal);
 
         boolean gameIsRunning = true;
         while (gameIsRunning) {
@@ -29,7 +30,10 @@ public class Main {
             while (key == null);
 
             Key.Kind keyPressed = key.getKind();
-            Player.movePlayer(terminal, keyPressed);
+
+            player.movePlayer(terminal, keyPressed);
+
+            board.updateScreen(terminal, player);
 
 
         }
