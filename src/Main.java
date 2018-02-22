@@ -4,6 +4,8 @@ import com.googlecode.lanterna.terminal.Terminal;
 
 import java.nio.charset.Charset;
 
+import static com.googlecode.lanterna.input.Key.Kind.F2;
+
 public class Main {
     public static void main(String[] arg) throws InterruptedException {
 
@@ -12,6 +14,7 @@ public class Main {
 
         terminal.enterPrivateMode();
         terminal.setCursorVisible(false);
+        terminal.applyForegroundColor(255, 0, 102);
 
         Board board = new Board(terminal);
 
@@ -24,25 +27,27 @@ public class Main {
 
         boolean gameIsRunning = true;
 
-        while (gameIsRunning) {
+
+            while (gameIsRunning) {
 
 
-            player.movePlayer(terminal);
-            for (int i = 0; i < monsters.length; i++) {
-                monsters[i].moveMonster(terminal, player);
+                player.movePlayer(terminal);
+                for (int i = 0; i < monsters.length; i++) {
+                    monsters[i].moveMonster(terminal, player);
+                }
+                board.updateScreen(terminal, player, monsters);
+
+
+                gameIsRunning = checkPlayerAlive(monsters, player, terminal);
+
+
             }
-            board.updateScreen(terminal, player, monsters);
 
-
-            gameIsRunning = checkPlayerAlive(monsters, player, terminal);
-
-
-        }
 
 
     }
 
-    public static boolean checkPlayerAlive(Monster[] monsters, Player player, Terminal terminal) {
+    public static boolean checkPlayerAlive(Monster[] monsters, Player player, Terminal terminal) throws InterruptedException {
         for (int i = 0; i < monsters.length; i++) {
             if (monsters[i].getMonsterX() == player.getX() && monsters[i].getMonsterY() == player.getY()) {
                 terminal.clearScreen();
@@ -61,4 +66,5 @@ public class Main {
             x = x + 1;
         }
     }
+
 }

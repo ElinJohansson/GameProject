@@ -12,8 +12,8 @@ public class Monster {
     public char monsterCharacter = '\u00A4';
 
     public Monster(Terminal terminal) {
-        monsterX = random.nextInt(19);
-        monsterY = random.nextInt(19);
+        monsterX = random.nextInt(19)+1;
+        monsterY = random.nextInt(19)+1;
         terminal.moveCursor(monsterX, monsterY);
         terminal.putCharacter(monsterCharacter);
     }
