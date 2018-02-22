@@ -1,4 +1,3 @@
-import com.googlecode.lanterna.TerminalFacade;
 import com.googlecode.lanterna.terminal.Terminal;
 
 public class Board {
@@ -21,7 +20,7 @@ public class Board {
         terminal.moveCursor(player.getX(), player.getY());
         terminal.putCharacter('\u263a');
 
-        terminal.moveCursor(monster.getX(), monster.getY());
+        terminal.moveCursor(monster.getMonsterX(), monster.getMonsterY());
         terminal.putCharacter('\u03DE');
     }
 

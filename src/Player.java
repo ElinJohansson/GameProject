@@ -24,21 +24,25 @@ public class Player {
         switch (key) {
             case ArrowDown:
                 y=y+1;
+                System.out.println("Player x: "+x+" Player y: "+y);
                 //terminal.moveCursor(x,y-1);
                 //terminal.putCharacter('\u263a');
                 break;
             case ArrowUp:
                 y=y-1;
+                System.out.println("Player x: "+x+" Player y: "+y);
                 //terminal.moveCursor(x, y+1);
                 //terminal.putCharacter('\u263a');
                 break;
             case ArrowLeft:
                 x=x-1;
+                System.out.println("Player x: "+x+" Player y: "+y);
                 //terminal.moveCursor(x-1, y);
                 //terminal.putCharacter('\u263a');
                 break;
             case ArrowRight:
                 x=x+1;
+                System.out.println("Player x: "+x+" Player y: "+y);
                 //terminal.moveCursor(x+1, y);
                 //terminal.putCharacter('\u263a');
                 break;

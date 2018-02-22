@@ -1,11 +1,8 @@
 import com.googlecode.lanterna.*;
 import com.googlecode.lanterna.input.Key;
 import com.googlecode.lanterna.terminal.Terminal;
-import com.googlecode.lanterna.terminal.TerminalSize;
 
-import java.io.IOException;
 import java.nio.charset.Charset;
-import java.util.Random;
 
 public class Main {
     public static void main(String[] arg) throws InterruptedException {
@@ -21,6 +18,7 @@ public class Main {
        Monster monster = new Monster(terminal);
 
         boolean gameIsRunning = true;
+
         while (gameIsRunning) {
 
             Key key;
@@ -32,8 +30,8 @@ public class Main {
 
             Key.Kind keyPressed = key.getKind();
 
-            monster.moveMonster(terminal,player);
             player.movePlayer(terminal, keyPressed);
+            monster.moveMonster(terminal,player);
             gameIsRunning = checkPlayerAlive(monster, player);
 
             board.updateScreen(terminal, player, monster);
@@ -45,7 +43,7 @@ public class Main {
     }
 
     public static boolean checkPlayerAlive(Monster monster, Player player){
-        if(monster.getX() == player.getX() && monster.getY() == player.getY()){
+        if(monster.getMonsterX() == player.getX() && monster.getMonsterY() == player.getY()){
             return false;
         }
         return true;
