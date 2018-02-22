@@ -17,8 +17,8 @@ public class Main {
         terminal.setCursorVisible(false);
 
         Board board = new Board(terminal);
+        Monster monster = new Monster(terminal);
        Player player = new Player(terminal);
-       Monster monster = new Monster(terminal);
 
         boolean gameIsRunning = true;
         while (gameIsRunning) {
