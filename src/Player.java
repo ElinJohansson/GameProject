@@ -12,8 +12,8 @@ public class Player {
 
     //Konstruktorn
     public Player(Terminal terminal) {
-        this.x = 5;
-        this.y = 5;
+        this.x = 10;
+        this.y = 10;
         terminal.moveCursor(x, y);
         terminal.putCharacter(playerCharacter);
 

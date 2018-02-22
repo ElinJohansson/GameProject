@@ -16,10 +16,13 @@ public class Board {
     //public void clearScreen(Terminal terminal){
      //   terminal.clearScreen();
     //}
-    public void updateScreen(Terminal terminal, Player player){
+    public void updateScreen(Terminal terminal, Player player, Monster monster){
         terminal.clearScreen();
         terminal.moveCursor(player.getX(), player.getY());
         terminal.putCharacter('\u263a');
+
+        terminal.moveCursor(monster.getX(), monster.getY());
+        terminal.putCharacter('\u03DE');
     }
 
 
@@ -37,7 +40,6 @@ public class Board {
             for (int j = 0; j < board[i].length; j++) {
 
                 terminal.moveCursor(j, i);
-                terminal.putCharacter('X');
 
             }
         }

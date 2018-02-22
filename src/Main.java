@@ -18,6 +18,7 @@ public class Main {
 
         Board board = new Board(terminal);
        Player player = new Player(terminal);
+       Monster monster = new Monster(terminal);
 
         boolean gameIsRunning = true;
         while (gameIsRunning) {
@@ -33,7 +34,7 @@ public class Main {
 
             player.movePlayer(terminal, keyPressed);
 
-            board.updateScreen(terminal, player);
+            board.updateScreen(terminal, player, monster);
 
 
         }
