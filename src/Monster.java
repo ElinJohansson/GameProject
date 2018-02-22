@@ -7,6 +7,7 @@ public class Monster {
     private int monsterX;
     private int monsterY;
     Random random = new Random();
+    public static String message = "Game Over";
 
     public char monsterCharacter = '\u03DE';
 
@@ -22,8 +23,10 @@ public class Monster {
         int playerY = player.getY();
         Random random = new Random();
 
-        if (monsterX == playerX) {
-            if (monsterY<playerY) {
+        if (monsterX == playerX && monsterY == playerY) {
+            printText(10, 10, message, terminal);
+        } else if (monsterX == playerX) {
+            if (monsterY < playerY) {
                 moveDown();
             } else {
                 moveUp();
@@ -31,7 +34,7 @@ public class Monster {
         } else if (monsterY == playerY) {
             if (monsterX < playerX) {
                 moveRight();
-            } else if(monsterX > playerX){
+            } else if (monsterX > playerX) {
                 moveLeft();
             }
         } else if (playerX > monsterX && playerY > monsterY) {
@@ -48,7 +51,7 @@ public class Monster {
             }
         } else if (playerX > monsterX && playerY < monsterY) {
             if (random.nextInt(1) == 1) {
-               moveUp();
+                moveUp();
             } else {
                 moveRight();
             }
@@ -56,38 +59,36 @@ public class Monster {
             if (random.nextInt(1) == 1) {
                 moveDown();
             } else {
-               moveLeft();
+                moveLeft();
             }
         }
 
-//        else if (playerX < monsterX && playerY == monsterY) {
-//            monsterX = monsterX - 1;
-//        } else if (playerX > monsterX && playerY == monsterY) {
-//            monsterX = monsterX + 1;
-//        } else if (playerX == monsterX && playerY < monsterY) {
-//            monsterY = monsterY - 1;
-//        } else if (playerX == monsterX && playerY > monsterY) {
-//            monsterY = monsterY + 1;
-//        }
-        System.out.println("Monster monsterX:"+ monsterX +" Monster monsterY: "+ monsterY);
-
-
+        System.out.println("Monster monsterX:" + monsterX + " Monster monsterY: " + monsterY);
     }
 
-    public void moveRight(){
-        monsterX = monsterX+1;
+
+    public static void printText(int a, int b, String message, Terminal terminal) {
+        for (int i = 0; i < message.length(); i++) {
+            terminal.moveCursor(a, b);
+            terminal.putCharacter(message.charAt(i));
+            a = a + 1;
+        }
     }
 
-    public void moveLeft(){
-        monsterX = monsterX-1;
+    public void moveRight() {
+        monsterX = monsterX + 1;
     }
 
-    public void moveUp(){
-        monsterY = monsterY-1;
+    public void moveLeft() {
+        monsterX = monsterX - 1;
     }
 
-    public void moveDown(){
-        monsterY=monsterY+1;
+    public void moveUp() {
+        monsterY = monsterY - 1;
+    }
+
+    public void moveDown() {
+        monsterY = monsterY + 1;
     }
 
     public int getMonsterX() {
