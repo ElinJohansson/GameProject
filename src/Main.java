@@ -15,26 +15,24 @@ public class Main {
 
         Board board = new Board(terminal);
        Player player = new Player(terminal);
-       Monster monster = new Monster(terminal);
+       Monster[]monsters = new Monster[4];
+       for (int i=0; i<monsters.length; i++){
+           monsters[i]=new Monster(terminal);
+       }
 
         boolean gameIsRunning = true;
 
         while (gameIsRunning) {
 
-            Key key;
-            do {
-                Thread.sleep(5);
-                key = terminal.readInput();
+
+
+            player.movePlayer(terminal);
+            for (int i=0; i<monsters.length; i++) {
+                monsters[i].moveMonster(terminal, player);
             }
-            while (key == null);
+            gameIsRunning = checkPlayerAlive(monsters, player);
 
-            Key.Kind keyPressed = key.getKind();
-
-            player.movePlayer(terminal, keyPressed);
-            monster.moveMonster(terminal,player);
-            gameIsRunning = checkPlayerAlive(monster, player);
-
-            board.updateScreen(terminal, player, monster);
+            board.updateScreen(terminal, player, monsters);
 
 
         }
@@ -42,9 +40,11 @@ public class Main {
 
     }
 
-    public static boolean checkPlayerAlive(Monster monster, Player player){
-        if(monster.getMonsterX() == player.getX() && monster.getMonsterY() == player.getY()){
+    public static boolean checkPlayerAlive(Monster[] monsters, Player player){
+        for (int i=0; i<monsters.length; i++){
+        if(monsters[i].getMonsterX() == player.getX() && monsters[i].getMonsterY() == player.getY()){
             return false;
+        }
         }
         return true;
     }
