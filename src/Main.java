@@ -15,8 +15,10 @@ public class Main {
 
         terminal.enterPrivateMode();
 
-        boolean gameIsRunning = true;
+        Board board = new Board(terminal);
+//        Player player = new Player();
 
+        boolean gameIsRunning = true;
         while (gameIsRunning) {
 
             Key key;
@@ -27,7 +29,6 @@ public class Main {
             while (key == null);
 
             Key.Kind keyPressed = key.getKind();
-
             Player.movePlayer(terminal, keyPressed);
 
 

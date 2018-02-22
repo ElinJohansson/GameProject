@@ -1,5 +1,37 @@
+import com.googlecode.lanterna.terminal.Terminal;
+
 public class Board {
 
-    Monster [] monsters;
+    Monster[] monsters;
     Player player;
+    int[][] board;
+
+    public Board(Terminal terminal) {
+        this.board = new int[20][20];
+        drawBoard(terminal, board);
+        this.player = new Player(terminal);
+    }
+
+//    public void fillBoard(int[][] board) {
+//        for (int i = 0; i < board.length; i++) {
+//            for (int j = 0; j < board.length; j++) {
+//                board[i][j] = 'X';
+//            }
+//        }
+//    }
+
+    public void drawBoard(Terminal terminal, int[][] board) {
+
+        for (int i = 0; i < board.length; i++) {
+            for (int j = 0; j < board[i].length; j++) {
+
+                terminal.moveCursor(j, i);
+                terminal.putCharacter('X');
+
+            }
+        }
+
+    }
+
+
 }
