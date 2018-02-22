@@ -25,10 +25,7 @@ public class Main {
         int highscore = 0;
         boolean gameIsRunning = true;
 
-
         while (gameIsRunning) {
-
-
             player.movePlayer(terminal);
             for (int i = 0; i < monsters.length; i++) {
                 monsters[i].moveMonster(terminal, player);
