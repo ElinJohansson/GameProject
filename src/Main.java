@@ -26,8 +26,13 @@ public class Main {
             }
             while (key == null);
 
+            Key.Kind keyPressed = key.getKind();
+
+            Player.movePlayer(terminal, keyPressed);
+
 
         }
+
 
     }
 }
