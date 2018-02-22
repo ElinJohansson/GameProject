@@ -12,13 +12,13 @@ public class Monster {
     public char monsterCharacter = '\u00A4';
 
     public Monster(Terminal terminal) {
-        monsterX = random.nextInt(19)+1;
-        monsterY = random.nextInt(19)+1;
+        monsterX = random.nextInt(18)+1;
+        monsterY = random.nextInt(18)+1;
         terminal.moveCursor(monsterX, monsterY);
         terminal.putCharacter(monsterCharacter);
     }
 
-    public void moveMonster(Terminal terminal, Player player) {// ej klar
+    public void moveMonster(Terminal terminal, Player player) {
         int playerX = player.getX();
         int playerY = player.getY();
         Random random = new Random();

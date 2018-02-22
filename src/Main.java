@@ -17,41 +17,36 @@ public class Main {
         terminal.applyForegroundColor(255, 0, 102);
 
         Board board = new Board(terminal);
-
         Player player = new Player(terminal);
-
         Monster[] monsters = new Monster[4];
         for (int i = 0; i < monsters.length; i++) {
             monsters[i] = new Monster(terminal);
         }
-
+        int highscore = 0;
         boolean gameIsRunning = true;
 
 
-            while (gameIsRunning) {
+        while (gameIsRunning) {
 
 
-                player.movePlayer(terminal);
-                for (int i = 0; i < monsters.length; i++) {
-                    monsters[i].moveMonster(terminal, player);
-                }
-                board.updateScreen(terminal, player, monsters);
-
-
-                gameIsRunning = checkPlayerAlive(monsters, player, terminal);
-
-
+            player.movePlayer(terminal);
+            for (int i = 0; i < monsters.length; i++) {
+                monsters[i].moveMonster(terminal, player);
             }
-
-
-
+            board.updateScreen(terminal, player, monsters);
+            gameIsRunning = checkPlayerAlive(monsters, player, terminal, highscore);
+            ++highscore;
+        }
     }
 
-    public static boolean checkPlayerAlive(Monster[] monsters, Player player, Terminal terminal) throws InterruptedException {
+    public static boolean checkPlayerAlive(Monster[] monsters, Player player, Terminal terminal, int highscore) throws InterruptedException {
         for (int i = 0; i < monsters.length; i++) {
             if (monsters[i].getMonsterX() == player.getX() && monsters[i].getMonsterY() == player.getY()) {
                 terminal.clearScreen();
-                printText(10, 10, "Game Over", terminal);
+                Board.drawBoard(terminal);
+                printText(6, 8, "Game Over", terminal);
+                printText(5, 10, "You survived ", terminal);
+                printText(7, 12, highscore + " turns!", terminal);
                 return false;
             }
         }
