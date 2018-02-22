@@ -9,7 +9,7 @@ public class Monster {
     Random random = new Random();
     public static String message = "Game Over";
 
-    public char monsterCharacter = '\u03DE';
+    public char monsterCharacter = '\u00A4';
 
     public Monster(Terminal terminal) {
         monsterX = random.nextInt(19);
