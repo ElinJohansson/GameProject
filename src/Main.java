@@ -32,7 +32,9 @@ public class Main {
 
             Key.Kind keyPressed = key.getKind();
 
+            monster.moveMonster(terminal,player);
             player.movePlayer(terminal, keyPressed);
+            gameIsRunning = checkPlayerAlive(monster, player);
 
             board.updateScreen(terminal, player, monster);
 
@@ -40,5 +42,12 @@ public class Main {
         }
 
 
+    }
+
+    public static boolean checkPlayerAlive(Monster monster, Player player){
+        if(monster.getX() == player.getX() && monster.getY() == player.getY()){
+            return false;
+        }
+        return true;
     }
 }
